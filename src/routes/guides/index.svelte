@@ -27,8 +27,12 @@
 
 <div class="guides">
 	<ul>
-		{#each guideObjsList as guideObj}
-			<li><a href="/">{guideObj.title}</a></li>
+		{#each guideObjsList as { id, title }}
+			<li>
+				<a href={`/guides/${id}`}>
+					{title}
+				</a>
+			</li>
 		{/each}
 	</ul>
 </div>
