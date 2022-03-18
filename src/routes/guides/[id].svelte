@@ -2,19 +2,21 @@
 	export async function load({ fetch, params }) {
 		const guideId = params.id;
 		const guideUrl = `https://jsonplaceholder.typicode.com/posts/${guideId}`;
-		try {
-			const response = await fetch(guideUrl);
-			const guideObj = await response.json();
+		const response = await fetch(guideUrl);
+		const guideObj = await response.json();
+
+		if (response.ok) {
 			return {
 				props: {
 					guideObj
 				}
 			};
-		} catch (err) {
-			return {
-				error: err
-			};
 		}
+
+		return {
+			status: 301,
+			redirect: '/guides'
+		};
 	}
 </script>
 
